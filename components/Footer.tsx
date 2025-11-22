@@ -64,10 +64,10 @@ export default function Footer() {
 
       <div className="container copyright text-center mt-4">
         <p>
-          © <span>Copyright</span> <strong className="px-1 sitename">Khansa Nisrina</strong> <span>All Rights Reserved</span>
+          © <span>Copyright</span> <strong className="px-1 sitename">Khansa Nisrina</strong>
         </p>
         <div className="credits">
-          Designed & Developed by <a href="https://khansa-nisrina.vercel.app">Khansa Nisrina</a>
+          Dibuat & Dikembangkan dengan cinta oleh <a href="https://www.instagram.com/khns6113/">Khansa Nisrina</a>
         </div>
       </div>
     </footer>

@@ -8,14 +8,14 @@ interface Service {
   deskripsi_layanan: string;
   ikon_layanan: string;
   link_layanan: string | null;
-  featured: number; // 0 atau 1 dari DB
+  featured: number; 
 }
 
 export default function Services() {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Normalisasi respons API → apapun bentuknya, ujungnya array
+
   const normalize = (data: any): Service[] => {
     if (!data) return [];
     if (Array.isArray(data)) return data as Service[];

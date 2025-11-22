@@ -55,22 +55,27 @@
 
 /* Global Colors */
 :root { 
-  --background-color: linear-gradient(to bottom, #000000, #5b5649);
+  --background-color: linear-gradient(180deg, #000000 0%, #0b0026 100%);
   --default-color: #ffffff;
   --heading-color: #ededed;
-  --accent-color: #7f9e74;
+  --accent-color: #59495b;
   --surface-color: #1c1c1c;
   --contrast-color: #ffffff;
+  /* PillNav theme variables (used by the pill header) */
+  --base: var(--surface-color);
+  --pill-bg: var(--default-color);
+  --hover-text: var(--heading-color);
+  --pill-text: var(--contrast-color);
 }
 
 /* Nav Menu Colors */
 :root {
   --nav-color: #d9d9d9;
-  --nav-hover-color: #7f9e74;
+  --nav-hover-color: #59495b;
   --nav-mobile-background-color: #2e2e2e;
   --nav-dropdown-background-color: #2e2e2e;
   --nav-dropdown-color: #d9d9d9;
-  --nav-dropdown-hover-color: #7f9e74;
+  --nav-dropdown-hover-color: #59495b;
 }
 
 /* Color Presets */
@@ -105,6 +110,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--background-color);
 }
 
 * {
@@ -142,7 +148,6 @@ h6 {
   font-weight: 600 !important;
   text-align: center;
   margin: 0 0 2rem 0 !important;
-  color: #7f9e74 !important;
 }
 
 /* Temporary helper to push hero content lower on the page */
@@ -168,10 +173,10 @@ h6 {
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1.5px solid rgba(127, 158, 116, 0.5) !important;
+  background:#905198;
+  border: 1.5px solid rgba(187, 0, 255, 0.5) !important;
   border-radius: 50%;
-  color: #7f9e74 !important;
+  color: #ffffff !important;
   font-size: 1.1rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
@@ -182,18 +187,18 @@ h6 {
 .hero-push a[href*="facebook"]:hover,
 .hero-push a[href*="instagram"]:hover,
 .hero-push a[href*="linkedin"]:hover {
-  background: #7f9e74 !important;
+  background: linear-gradient(135deg, #905198 0%, #3e7c97 100%) !important;
   color: #fff !important;
-  border-color: #7f9e74 !important;
+  border-color: #e100ff !important;
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(127, 158, 116, 0.25);
+  box-shadow: 0 12px 24px #3e7c97;
 }
 
 /* Hero CTA Button - elegant and professional */
 .hero-push a[href="#about"] {
   display: inline-block;
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #7f9e74 0%, #6b8a63 100%) !important;
+  background: linear-gradient(135deg, #905198 0%, #3e7c97 100%) !important;
   color: #fff !important;
   font-weight: 600;
   font-size: 1rem;
@@ -220,7 +225,7 @@ h6 {
 }
 
 .hero-push a[href="#about"]:hover {
-  background: linear-gradient(135deg, #6b8a63 0%, #5a7654 100%) !important;
+  background: linear-gradient(135deg, #784a8d 0%, #8c439d 100%) !important;
   transform: translateY(-3px);
   box-shadow: 0 16px 32px rgba(127, 158, 116, 0.35);
 }
@@ -386,7 +391,7 @@ h6 {
 .portfolio-lightbox-title {
   font-size: 22px;
   font-weight: 600;
-  color: #7f9e74;
+  color: #905198;
   margin: 0;
   order: -2;
 }
@@ -450,7 +455,7 @@ h6 {
   border-radius: 50%;
   border: 1.5px solid rgba(127, 158, 116, 0.5);
   background: rgba(127, 158, 116, 0.15);
-  color: #7f9e74;
+  color: #905198;
   font-size: 24px;
   display: flex;
   align-items: center;
@@ -463,7 +468,7 @@ h6 {
 
 .portfolio-lightbox-arrow:hover {
   background: rgba(127, 158, 116, 0.3);
-  border-color: #7f9e74;
+  border-color: #905198;
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 8px 16px rgba(127, 158, 116, 0.25);
 }
@@ -526,12 +531,11 @@ h6 {
    HEADER CUSTOM BACKGROUND
    ================================ */
 .custom-header-bg {
-  background: rgba(0, 0, 0, 0.55) !important; /* hitam transparan */
-  backdrop-filter: blur(6px);                 /* efek kaca */
-  -webkit-backdrop-filter: blur(6px);         /* Safari */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
   padding: 10px 0 !important;
-  /* keep header height consistent via CSS variable if you want exact control */
   height: var(--header-height);
 }
 
@@ -542,7 +546,7 @@ h6 {
 
 .custom-header-bg .navmenu a:hover,
 .custom-header-bg .navmenu .active {
-  color: #7f9e74 !important; /* biru muda hover */
+  color: #905198 !important; /* biru muda hover */
 }
 
 /* Logo color */
@@ -563,6 +567,388 @@ h6 {
 
 /* ================================
    MOBILE MENU STYLE
+================================== */
+
+/* ================================
+   PillNav (Pill-style header) styles
+   Inserted from provided component CSS and adjusted to use global CSS variables
+================================== */
+.pill-nav-container {
+  position: absolute;
+  top: calc(var(--header-height) / 2 - var(--nav-h) / 2 - 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* rounded wrapper like your example */
+  padding: 4px 12px; /* slightly smaller padding */
+  border-radius: 999px;
+  background:linear-gradient(135deg, #90519860 0%, #3e7c975a 100%) !important;
+  border: 1.5px solid linear-gradient(135deg, #905198 0%, #3e7c97 100%) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+  height: calc(var(--nav-h) + 8px); /* keep wrapper tight to nav */
+}
+
+@media (max-width: 768px) {
+  .pill-nav-container {
+    width: 100%;
+    left: 0;
+    transform: none;
+  }
+}
+
+.pill-nav {
+  --nav-h: 46px; /* compact nav height */
+  --logo: 40px;   /* slightly smaller logo to match compact height */
+  --pill-pad-x: 18px;
+  --pill-gap: 3px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .pill-nav {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background: transparent;
+  }
+}
+
+.pill-nav-items {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--nav-h);
+  background: transparent; /* wrapper provides the background */
+  border-radius: 9999px;
+  padding: 0 6px; /* small inner padding so pills don't touch the wrapper */
+}
+
+.pill-logo {
+  width: var(--logo);
+  height: var(--logo);
+  min-width: var(--logo);
+  min-height: var(--logo);
+  border-radius: 50%;
+  background: transparent;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pill-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pill-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* slightly larger gap to match example */
+  margin: 0;
+  padding: 3px;
+  height: 100%;
+  flex-wrap: nowrap; /* prevent wrapping */
+}
+
+.pill-list > li {
+  display: flex;
+  height: 100%;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--nav-h) - 8px);
+  padding: 0 8px;
+  background: rgba(0,0,0,0.7);
+  color: var(--pill-text, #fff);
+  text-decoration: none;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  font-weight: 700; /* slightly bolder text */
+  font-size: 13px;  /* consistent size */
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  min-width: 110px;  /* uniform button width */
+  flex: 0 0 110px;   /* prevent resizing and wrapping */
+  text-align: center;
+}
+
+.pill .hover-circle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--base, #000);
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.pill .label-stack {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 2;
+}
+
+.pill .pill-label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  line-height: 1;
+  will-change: transform;
+}
+
+.pill .pill-label-hover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--hover-text, #fff);
+  z-index: 3;
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Improve hover contrast so menu text stays visible */
+.pill:hover,
+.pill:focus {
+  background: linear-gradient(135deg, #784a8d 0%, #8c439d 100%) !important;
+  color: var(--hover-text) !important;
+}
+
+.pill:hover .pill-label,
+.pill:focus .pill-label {
+  color: var(--hover-text) !important;
+}
+
+.pill:hover .pill-label-hover,
+.pill:focus .pill-label-hover {
+  color: var(--hover-text) !important;
+}
+
+.pill.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--base, #000);
+  border-radius: 50px;
+  z-index: 4;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+.mobile-menu-button {
+  width: var(--nav-h);
+  height: var(--nav-h);
+  border-radius: 50%;
+  background: var(--base, #000);
+  border: none;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: flex;
+  }
+}
+
+.hamburger-line {
+  width: 16px;
+  height: 2px;
+  background: var(--pill-bg, #fff);
+  border-radius: 1px;
+  transition: all 0.01s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-popover {
+  position: absolute;
+  top: 3em;
+  left: 1rem;
+  right: 1rem;
+  background: var(--base, #f0f0f0);
+  border-radius: 27px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  z-index: 998;
+  opacity: 0;
+  transform-origin: top center;
+  visibility: hidden;
+}
+
+.mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-menu-popover .mobile-menu-link {
+  display: block;
+  padding: 12px 16px;
+  color: var(--pill-text, #fff);
+  background-color: var(--pill-bg, #fff);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-popover .mobile-menu-link:hover {
+  cursor: pointer;
+  background: linear-gradient(135deg, #784a8d 0%, #8c439d 100%) !important;
+  color: var(--hover-text, #fff) !important;
+}
+
+/* ================================
+   PillNav end
+================================== */
+
+/* ================================
+   GradientText styles
+   (used by components/GradientText.tsx)
+================================== */
+.animated-gradient-text {
+  position: relative;
+  margin: 0 auto;
+  display: inline-flex;
+  max-width: fit-content;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.5s ease-out;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 300% 100%;
+  animation: gradient linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gradient-overlay::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: inherit;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(6, 0, 16, 0.85);
+  z-index: -1;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-content {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradient linear infinite;
+}
+
+/* Ensure animation-duration can be overridden via inline style (component sets it) */
+.gradient-overlay,
+.text-content {
+  animation-duration: 8s;
+}
+
+/* When used with the hero title the site had a strong color rule
+   (.hero-title { color: ... !important }) which prevented the
+   clipped background from showing. Force transparent text here
+   for the animated gradient when the component is used as a hero. */
+.animated-gradient-text.hero-title .text-content {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* small helper so text keeps the same sizing/line-height as the original hero heading when used */
+.animated-gradient-text.hero-title {
+  display: inline-block;
+}
+
+/* ================================
+   end GradientText styles
 ================================== */
 
 /* Tersembunyi di tampilan desktop */
@@ -617,10 +1003,11 @@ h6 {
    HEADER BACKGROUND FIX
 ================================== */
 .custom-header-bg {
-  background: rgba(0, 0, 0, 0.55) !important; /* hitam transparan */
-  backdrop-filter: blur(6px);                 /* efek kaca */
-  -webkit-backdrop-filter: blur(6px);         /* Safari */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  /* keep header transparent everywhere — exact look is controlled by PillNav */
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
   padding: 10px 0 !important;
 }
 
