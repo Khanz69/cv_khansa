@@ -8,6 +8,7 @@ import { MathUtils } from 'three';
 
 import '../Animations/Beams.css';
 import GradientText from '../Animations/GradientText';
+import Stack from '../Animations/Stack';
 
 interface Profile {
   nama?: string;
@@ -444,10 +445,11 @@ export default function Hero() {
       </div>
 
       {/* Title layer (full-width) - decoupled from the centered icons/buttons */}
-      <div className="absolute top-0 left-0 w-full h-full z-[50] pointer-events-none">
+      {/* allow pointer events here so interactive children (Stack) can receive mouse/touch */}
+      <div className="absolute top-0 left-0 w-full h-full z-[50] pointer-events-auto">
         {/* position title near top-left and limit width so it doesn't overlap center content */}
-        <div style={{ height: 'calc(100vh - var(--header-height))', display: 'flex', alignItems: 'flex-start', paddingTop: '25vh', marginLeft: '13vw' }}>
-          <div className="ml-6 md:ml-16 max-w-[55%]">
+        <div style={{ height: 'calc(100vh - var(--header-height))', display: 'flex', alignItems: 'flex-start', paddingTop: '25vh', marginLeft: '15vw' }}>
+          <div className="ml-6 md:ml-16 max-w-[55%] pointer-events-none">
             <GradientText
               className="hero-title font-bold font-mulish animate-fade-up leading-tight text-left"
               colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
@@ -461,6 +463,15 @@ export default function Hero() {
                 <span className="whitespace-normal md:whitespace-nowrap">{nama}</span>
               </>
             </GradientText>
+          </div>
+          {/* right-side portfolio stack (interactive) */}
+          <div className="ml-auto mr-6 md:mr-16 pointer-events-auto flex items-center" style={{ minWidth: 260, marginLeft: '10vw' }}>
+            <Stack
+              randomRotation={true}
+              sensitivity={160}
+              sendToBackOnClick={true}
+              cardDimensions={{ width: 260, height: 260 }}
+            />
           </div>
         </div>
       </div>
