@@ -24,7 +24,7 @@
   --background-color: linear-gradient(180deg, #000000 0%, #0b0026 100%);
   --default-color: #ffffff; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #ededed; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #9a4da4; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #d079db; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #1c1c1c; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
   /* PillNav theme variables (kept mirrored with app globals) */
@@ -1848,7 +1848,7 @@ section,
 }
 
 .services .cta-box {
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #181d16 80%));
+  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #74b2bf 80%));
   border-radius: 20px;
   padding: 45px 50px;
   color: var(--contrast-color);

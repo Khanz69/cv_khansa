@@ -192,7 +192,8 @@ const Beams: FC<BeamsProps> = ({
   beamWidth = 2,
   beamHeight = 15,
   beamNumber = 12,
-  lightColor = '#c800ffff',
+  // use the project's purple accent by default
+  lightColor = '#905198',
   speed = 2,
   noiseIntensity = 1.75,
   scale = 0.2,
@@ -249,7 +250,8 @@ const Beams: FC<BeamsProps> = ({
           roughness: 0.3,
           metalness: 0.3,
           uSpeed: { shared: true, mixed: true, linked: true, value: speed },
-          envMapIntensity: 10,
+          // tone down env map highlights so the directional color shows through
+          envMapIntensity: 2,
           uNoiseIntensity: noiseIntensity,
           uScale: scale
         }
@@ -263,7 +265,8 @@ const Beams: FC<BeamsProps> = ({
         <PlaneNoise ref={meshRef} material={beamMaterial} count={beamNumber} width={beamWidth} height={beamHeight} />
         <DirLight color={lightColor} position={[0, 3, 10]} />
       </group>
-      <ambientLight intensity={1} />
+      {/* reduce ambient so directional purple tint is more visible */}
+      <ambientLight intensity={0.35} />
       <color attach="background" args={["#000000"]} />
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
     </CanvasWrapper>
@@ -440,18 +443,32 @@ export default function Hero() {
         />
       </div>
 
+      {/* Title layer (full-width) - decoupled from the centered icons/buttons */}
+      <div className="absolute top-0 left-0 w-full h-full z-[50] pointer-events-none">
+        {/* position title near top-left and limit width so it doesn't overlap center content */}
+        <div style={{ height: 'calc(100vh - var(--header-height))', display: 'flex', alignItems: 'flex-start', paddingTop: '25vh', marginLeft: '13vw' }}>
+          <div className="ml-6 md:ml-16 max-w-[55%]">
+            <GradientText
+              className="hero-title font-bold font-mulish animate-fade-up leading-tight text-left"
+              colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
+              animationSpeed={5}
+              showBorder={false}
+              style={{ fontSize: 'clamp(3.5rem, 8vw, 8rem)', lineHeight: 1.02, color: 'var(--heading-color)' }}
+            >
+              <>
+                Halo, Saya
+                <br />
+                <span className="whitespace-normal md:whitespace-nowrap">{nama}</span>
+              </>
+            </GradientText>
+          </div>
+        </div>
+      </div>
+
       {/* Content: center vertically within area below header */}
-      <div className="relative z-[50] max-w-4xl mx-auto text-center px-4" style={{ height: 'calc(100vh - var(--header-height))' }}>
-        <div className="h-full flex items-center justify-center flex-col gap-8 hero-push">
-          <GradientText
-            className="hero-title text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold font-mulish animate-fade-up leading-tight"
-            colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
-            animationSpeed={5}
-            showBorder={false}
-            style={{ fontSize: 'clamp(5rem, 12vw, 12rem)', lineHeight: 1, color: 'var(--heading-color)' }}
-          >
-            Halo, Saya {nama}
-          </GradientText>
+      <div className="relative z-[60] max-w-4xl mx-auto text-center px-4" style={{ height: 'calc(100vh - var(--header-height))' }}>
+        {/* push centered icons/CTA lower so they sit below the title */}
+        <div className="h-full flex items-center justify-center flex-col gap-8 hero-push" style={{ paddingTop: '20vh' }}>
 
           {/* Social Links */}
           <div className="flex justify-center gap-4 animate-zoom-in">
