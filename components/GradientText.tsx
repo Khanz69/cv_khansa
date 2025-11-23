@@ -23,7 +23,11 @@ export default function GradientText({
   const overlayStyle: React.CSSProperties = {
     ...gradientStyle,
     backgroundSize: '300% 100%',
+    backgroundPosition: '0% 50%',
     animationName: 'gradient',
+    WebkitAnimationName: 'gradient' as any,
+    animationDuration: `${animationSpeed}s`,
+    WebkitAnimationDuration: `${animationSpeed}s` as any,
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite'
   };
@@ -31,11 +35,15 @@ export default function GradientText({
   const textStyle: React.CSSProperties = {
     ...gradientStyle,
     backgroundSize: '300% 100%',
+    backgroundPosition: '0% 50%',
     WebkitBackgroundClip: 'text' as any,
     backgroundClip: 'text' as any,
     WebkitTextFillColor: 'transparent' as any,
     color: 'transparent',
     animationName: 'gradient',
+    WebkitAnimationName: 'gradient' as any,
+    animationDuration: `${animationSpeed}s`,
+    WebkitAnimationDuration: `${animationSpeed}s` as any,
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite'
   };

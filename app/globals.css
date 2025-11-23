@@ -173,7 +173,7 @@ h6 {
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  background:#905198;
+  background:#9051984a;
   border: 1.5px solid rgba(187, 0, 255, 0.5) !important;
   border-radius: 50%;
   color: #ffffff !important;
@@ -865,7 +865,7 @@ h6 {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 1.25rem;
+  border-radius: 0; /* no shaping — text should be plain */
   font-weight: 500;
   backdrop-filter: blur(10px);
   transition: box-shadow 0.5s ease-out;
@@ -881,7 +881,7 @@ h6 {
   bottom: 0;
   background-size: 300% 100%;
   animation: gradient linear infinite;
-  border-radius: inherit;
+  border-radius: 0;
   z-index: 0;
   pointer-events: none;
 }

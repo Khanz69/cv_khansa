@@ -445,16 +445,12 @@ export default function Hero() {
         <div className="h-full flex items-center justify-center flex-col gap-8 hero-push">
           <GradientText
             className="hero-title text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold font-mulish animate-fade-up leading-tight"
-            colors={["#905198", "#784a8d", "#8c439d"]}
-            animationSpeed={6}
+            colors={["#ff0000", "#00ff00", "#0000ff"]}
+            animationSpeed={1}
             showBorder={false}
           >
             Halo, Saya {nama}
           </GradientText>
-
-          <p data-aos="fade-up" data-aos-delay="350" className="text-lg md:text-2xl text-gray-300 animate-fade-up max-w-2xl">
-            Saya adalah <span className="text-white-400 font-semibold">Mahasiswa UMMI</span>
-          </p>
 
           {/* Social Links */}
           <div className="flex justify-center gap-4 animate-zoom-in">
