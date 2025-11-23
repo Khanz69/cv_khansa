@@ -174,13 +174,12 @@ h6 {
   width: 2.75rem;
   height: 2.75rem;
   background:#9051984a;
-  border: 1.5px solid rgba(187, 0, 255, 0.5) !important;
+  border: 1.5px solid #9051982c;
   border-radius: 50%;
   color: #ffffff !important;
   font-size: 1.1rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  backdrop-filter: blur(10px);
 }
 
 .hero-push a[href*="twitter"]:hover,
@@ -189,7 +188,7 @@ h6 {
 .hero-push a[href*="linkedin"]:hover {
   background: linear-gradient(135deg, #905198 0%, #3e7c97 100%) !important;
   color: #fff !important;
-  border-color: #e100ff !important;
+  border-color: #e100ff00 !important;
   transform: translateY(-4px);
   box-shadow: 0 12px 24px #3e7c97;
 }
@@ -867,7 +866,9 @@ h6 {
   justify-content: center;
   border-radius: 0; /* no shaping — text should be plain */
   font-weight: 500;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none; /* remove blur behind text */
+  background: transparent !important; /* ensure no background color */
+  padding: 0 !important;
   transition: box-shadow 0.5s ease-out;
   overflow: hidden;
   cursor: pointer;
@@ -897,8 +898,15 @@ h6 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(6, 0, 16, 0.85);
+  background-color: transparent; /* remove dark overlay */
   z-index: -1;
+}
+
+/* Ensure overlay elements are inert/hidden so text appears plain */
+.gradient-overlay,
+.gradient-overlay::before {
+  display: none !important;
+  background: transparent !important;
 }
 
 @keyframes gradient {
