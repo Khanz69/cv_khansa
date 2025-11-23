@@ -972,7 +972,7 @@ section,
 }
 
 .about .profile-card .profile-header .rating i {
-  color: #fbbf24;
+  color: #00ffff;
   font-size: 16px;
 }
 
@@ -1216,7 +1216,7 @@ section,
 .about .content-wrapper .skills-showcase .skills-list .skill-item .progress .progress-bar {
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #ecff5f 50%));
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #00f7ff 50%));
   border-radius: 10px;
   transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
   position: relative;

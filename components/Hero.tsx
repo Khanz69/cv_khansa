@@ -6,8 +6,8 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import { MathUtils } from 'three';
 
-import './Beams.css';
-import GradientText from './GradientText';
+import '../Animations/Beams.css';
+import GradientText from '../Animations/GradientText';
 
 interface Profile {
   nama?: string;
@@ -244,7 +244,7 @@ const Beams: FC<BeamsProps> = ({
         },
         material: { fog: true },
         uniforms: {
-          diffuse: new THREE.Color(...hexToNormalizedRGB('#000000')),
+          diffuse: new THREE.Color(...hexToNormalizedRGB('#000000ff')),
           time: { shared: true, mixed: true, linked: true, value: 0 },
           roughness: 0.3,
           metalness: 0.3,
@@ -432,7 +432,7 @@ export default function Hero() {
           beamWidth={2}
           beamHeight={15}
           beamNumber={12}
-          lightColor="#ffffff"
+          lightColor="#d900ffff"
           speed={2}
           noiseIntensity={1.75}
           scale={0.2}
@@ -446,9 +446,8 @@ export default function Hero() {
           <GradientText
             className="hero-title text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold font-mulish animate-fade-up leading-tight"
             colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
-            animationSpeed={1}
+            animationSpeed={5}
             showBorder={false}
-            plain={true}
             style={{ fontSize: 'clamp(5rem, 12vw, 12rem)', lineHeight: 1, color: 'var(--heading-color)' }}
           >
             Halo, Saya {nama}

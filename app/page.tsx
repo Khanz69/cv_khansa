@@ -9,8 +9,8 @@ import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollTop from "@/components/ScrollTop";
-import Preloader from "@/components/Preloader";
+import ScrollTop from "@/Animations/ScrollTop";
+import Preloader from "@/Animations/Preloader";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
