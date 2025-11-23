@@ -448,6 +448,7 @@ export default function Hero() {
             colors={["#ff0000", "#00ff00", "#0000ff"]}
             animationSpeed={1}
             showBorder={false}
+            style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', lineHeight: 1 }}
           >
             Halo, Saya {nama}
           </GradientText>
