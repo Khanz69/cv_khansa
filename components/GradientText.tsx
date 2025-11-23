@@ -7,15 +7,17 @@ interface GradientTextProps {
   animationSpeed?: number;
   showBorder?: boolean;
   style?: React.CSSProperties;
+  plain?: boolean;
 }
 
 export default function GradientText({
   children,
   className = '',
   colors = ['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa'],
-  animationSpeed = 8,
+  animationSpeed = 1,
   showBorder = false,
-  style
+  style,
+  plain = false
 }: GradientTextProps) {
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(to right, ${colors.join(', ')})`,
@@ -50,10 +52,16 @@ export default function GradientText({
     animationIterationCount: 'infinite'
   };
 
+  // If `plain` is true, render solid text without clipped background/animation
+  const plainTextStyle: React.CSSProperties = {
+    color: style?.color ?? 'var(--heading-color)',
+    WebkitTextFillColor: style?.color ?? 'var(--heading-color)'
+  };
+
   return (
     <div className={`animated-gradient-text ${className}`.trim()} style={style}>
-      {showBorder && <div className="gradient-overlay" style={overlayStyle} />}
-      <div className="text-content" style={textStyle}>
+      {showBorder && !plain && <div className="gradient-overlay" style={overlayStyle} />}
+      <div className="text-content" style={plain ? plainTextStyle : textStyle}>
         {children}
       </div>
     </div>

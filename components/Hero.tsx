@@ -445,10 +445,11 @@ export default function Hero() {
         <div className="h-full flex items-center justify-center flex-col gap-8 hero-push">
           <GradientText
             className="hero-title text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold font-mulish animate-fade-up leading-tight"
-            colors={["#ff0000", "#00ff00", "#0000ff"]}
+            colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
             animationSpeed={1}
             showBorder={false}
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', lineHeight: 1 }}
+            plain={true}
+            style={{ fontSize: 'clamp(5rem, 12vw, 12rem)', lineHeight: 1, color: 'var(--heading-color)' }}
           >
             Halo, Saya {nama}
           </GradientText>
