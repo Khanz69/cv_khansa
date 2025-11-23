@@ -1,6 +1,6 @@
 'use client';
 
-import PillNav from './PillNav';
+import PillNav from '../Animations/PillNav';
 
 export default function Header() {
   // Header now delegates navigation rendering to PillNav for a modern pill-style header.
