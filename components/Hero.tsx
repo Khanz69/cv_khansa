@@ -448,8 +448,11 @@ export default function Hero() {
       {/* allow pointer events here so interactive children (Stack) can receive mouse/touch */}
       <div className="absolute top-0 left-0 w-full h-full z-[50] pointer-events-auto">
         {/* position title near top-left and limit width so it doesn't overlap center content */}
-        <div style={{ height: 'calc(100vh - var(--header-height))', display: 'flex', alignItems: 'flex-start', paddingTop: '25vh', marginLeft: '15vw' }}>
-          <div className="ml-6 md:ml-16 max-w-[55%] pointer-events-none">
+        <div
+          className="flex h-full w-full flex-col items-center gap-10 px-6 pt-[25vh] md:flex-row md:items-start md:gap-8 md:px-0 md:pl-[15vw]"
+          style={{ height: 'calc(100vh - var(--header-height))' }}
+        >
+          <div className="w-full max-w-full md:max-w-[55%] pointer-events-none">
             <GradientText
               className="hero-title font-bold font-mulish animate-fade-up leading-tight text-left"
               colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
@@ -465,7 +468,10 @@ export default function Hero() {
             </GradientText>
           </div>
           {/* right-side portfolio stack (interactive) */}
-          <div className="ml-auto mr-6 md:mr-16 pointer-events-auto flex items-center" style={{ minWidth: 260, marginLeft: '10vw' }}>
+          <div
+            className="flex w-full max-w-[290px] justify-center md:w-auto md:ml-auto md:max-w-none md:mr-16"
+            style={{ minWidth: 240 }}
+          >
             <Stack
               randomRotation={true}
               sensitivity={160}
