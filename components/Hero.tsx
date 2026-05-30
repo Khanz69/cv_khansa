@@ -5,8 +5,6 @@ import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import { MathUtils } from 'three';
-
-import '../Animations/Beams.css';
 import GradientText from '../Animations/GradientText';
 import Stack from '../Animations/Stack';
 
@@ -418,6 +416,22 @@ export default function Hero() {
     return () => window.removeEventListener('resize', setHeaderHeight);
   }, []);
 
+  const [stackSize, setStackSize] = useState({ width: 260, height: 260 });
+
+  useEffect(() => {
+    const updateStackSize = () => {
+      const isCompact = window.innerWidth <= 768;
+      const target = isCompact ? { width: 200, height: 200 } : { width: 260, height: 260 };
+      setStackSize(prev => {
+        if (prev.width === target.width && prev.height === target.height) return prev;
+        return target;
+      });
+    };
+    updateStackSize();
+    window.addEventListener('resize', updateStackSize);
+    return () => window.removeEventListener('resize', updateStackSize);
+  }, []);
+
   const nama = profile?.nama || 'Khansa Nisrina';
 
   return (
@@ -447,18 +461,19 @@ export default function Hero() {
       {/* Title layer (full-width) - decoupled from the centered icons/buttons */}
       {/* allow pointer events here so interactive children (Stack) can receive mouse/touch */}
       <div className="absolute top-0 left-0 w-full h-full z-[50] pointer-events-auto">
-        {/* position title near top-left and limit width so it doesn't overlap center content */}
         <div
-          className="flex h-full w-full flex-col items-center gap-10 px-6 pt-[25vh] md:flex-row md:items-start md:gap-8 md:px-0 md:pl-[15vw]"
-          style={{ height: 'calc(100vh - var(--header-height))' }}
-        >
-          <div className="w-full max-w-full md:max-w-[55%] pointer-events-none">
+            className="hero-title-layout h-full flex flex-col md:flex-row items-center justify-center gap-16"
+            style={{
+              height: 'calc(100vh - var(--header-height))'
+            }}
+            >
+          <div className="pointer-events-none ml-6 md:ml-16 w-full max-w-full md:max-w-[55%]">
             <GradientText
               className="hero-title font-bold font-mulish animate-fade-up leading-tight text-left"
               colors={["#59306aff", "#cdacd7ff", "#6194b5ff"]}
               animationSpeed={5}
               showBorder={false}
-              style={{ fontSize: 'clamp(3.5rem, 8vw, 8rem)', lineHeight: 1.02, color: 'var(--heading-color)' }}
+              style={{ fontSize: 'clamp(3.5rem, 6vw, 6rem)', lineHeight: 1.02, color: 'var(--heading-color)' }}
             >
               <>
                 Halo, Saya
@@ -469,21 +484,21 @@ export default function Hero() {
           </div>
           {/* right-side portfolio stack (interactive) */}
           <div
-            className="flex w-full max-w-[290px] justify-center md:w-auto md:ml-auto md:max-w-none md:mr-16"
-            style={{ minWidth: 240 }}
+            className="pointer-events-auto flex w-full flex-col items-center justify-center md:w-auto md:items-end mr-6 md:mr-16"
+            style={{ minWidth: `${stackSize.width}px` }}
           >
             <Stack
               randomRotation={true}
               sensitivity={160}
               sendToBackOnClick={true}
-              cardDimensions={{ width: 260, height: 260 }}
+              cardDimensions={stackSize}
             />
           </div>
         </div>
       </div>
 
       {/* Content: center vertically within area below header */}
-      <div className="relative z-[60] max-w-4xl mx-auto text-center px-4" style={{ height: 'calc(100vh - var(--header-height))' }}>
+      <div className="relative z-[60] max-w-4xl mx-auto text-center px-4" style={{ height: 'calc(125vh - var(--header-height))' }}>
         {/* push centered icons/CTA lower so they sit below the title */}
         <div className="h-full flex items-center justify-center flex-col gap-8 hero-push" style={{ paddingTop: '20vh' }}>
 
