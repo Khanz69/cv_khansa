@@ -1,8 +1,10 @@
-@charset "UTF-8";
 @import "tailwindcss";
 
 @layer reset {
+  /* Disable Tailwind preflight to avoid conflicts with Bootstrap */
 }
+
+@charset "UTF-8";
 
 /* Fonts */
 :root {
@@ -140,24 +142,56 @@ h6 {
 
 /* Strong, specific title rule for hero so Bootstrap doesn't override it */
 .hero-title {
-  /* Smaller: decrease both min and max so heading is noticeably smaller */
-  font-size: clamp(3rem, 6vw, 6rem) !important;
   line-height: 1.08 !important;
-  font-weight: 600 !important;
-  text-align: left;
-  margin: 0 0 2rem 0 !important;
+  font-weight: 700 !important;
+  text-align: center;
+  margin: 0 !important;
 }
 
 /* Temporary helper to push hero content lower on the page */
 .hero-push {
-  /* Made very large per user request: moves hero content far down */
-  transform: translateY(clamp(2rem, 10vh, 8rem)) !important;
+  transform: none !important;
   transition: transform 180ms ease;
 }
 
 @media (max-width: 768px) {
   .hero-push {
-    transform: translateY(clamp(6rem, 25vh, 30rem)) !important;
+    transform: translateY(4rem) !important;
+    gap: 0.75rem;
+  }
+  .hero-push a[href*="twitter"],
+  .hero-push a[href*="facebook"],
+  .hero-push a[href*="instagram"],
+  .hero-push a[href*="linkedin"] {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+  .hero-push a[href="#about"] {
+    padding: 0.85rem 1.75rem;
+    max-width: min(220px, 80vw);
+    width: min(220px, 80vw);
+  }
+}
+
+.hero-title-layout {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 1200px) {
+  .hero-title-layout {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title-layout {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }
 
@@ -200,7 +234,7 @@ h6 {
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.5px;
-  border-radius: 999px;
+  border-radius: 0.375rem;
   border: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
@@ -856,7 +890,7 @@ h6 {
 ================================== */
 .animated-gradient-text {
   position: relative;
-  margin: 0 auto;
+  margin: 0;
   display: inline-flex;
   max-width: fit-content;
   flex-direction: row;

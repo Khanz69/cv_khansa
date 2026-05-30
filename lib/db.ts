@@ -5,7 +5,7 @@ let pool: mysql.Pool | null = null;
 function getPool() {
   if (!pool) {
     pool = mysql.createPool({
-      host: process.env.DB_HOST || 'locoalhost',
+      host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT || '3306'),
       user: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || '',
@@ -17,6 +17,24 @@ function getPool() {
   }
   return pool;
 }
+
+/*
+function getPool() {
+  if (!pool) {
+    pool = mysql.createPool({
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '3306'),
+      user: process.env.DB_USER || 'kelasbm1_khansa',
+      password: process.env.DB_PASSWORD || 'RMdKA.~q@Fi%zf[E',
+      database: process.env.DB_NAME || 'kelasbm1_khansa',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
+    });
+  }
+  return pool;
+}
+*/
 
 export async function query(sql: string, values?: any[]) {
   try {
