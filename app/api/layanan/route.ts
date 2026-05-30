@@ -1,15 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { NextResponse } from 'next/server';
+import { db } from '@/db/index';
+import { layanan } from '@/db/schema';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const results = await query('SELECT * FROM layanan') as any[];
+    const results = await db.select().from(layanan);
     return NextResponse.json(results);
   } catch (error) {
     console.error('Database error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch services' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch services' }, { status: 500 });
   }
 }

@@ -1,15 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { NextResponse } from 'next/server';
+import { db } from '@/db/index';
+import { pengalaman } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const results = await query('SELECT * FROM pengalaman WHERE user_id = 1 ORDER BY tahun_mulai DESC') as any[];
+    const results = await db
+      .select()
+      .from(pengalaman)
+      .where(eq(pengalaman.user_id, 1))
+      .orderBy(desc(pengalaman.tahun_mulai));
     return NextResponse.json(results);
   } catch (error) {
     console.error('Database error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch experience' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch experience' }, { status: 500 });
   }
 }
